@@ -1,7 +1,7 @@
 import typing
-import wfmcreator.propconst
-import wfmcreator.replist
-import newradio
+from ..replist import ReplicatingList
+from ..propconst import constrain_type 
+from . import Pusch, Pdsch
 from .carrier_enums import *
 
 
@@ -16,16 +16,16 @@ class Carrier:
         self._downlink_test_model_duplex_scheme = None
         self._bandwidth_part_subcarrier_spacing = None
         self._num_pusch = 1
-        self._pusch = wfmcreator.replist.ReplicatingList(newradio.Pusch, 1)
+        self._pusch = ReplicatingList(Pusch, 1)
         self._num_pdsch = 1
-        self._pdsch = wfmcreator.replist.ReplicatingList(newradio.Pdsch, 1)
+        self._pdsch = ReplicatingList(Pdsch, 1)
 
     @property
     def cell_id(self) -> int:
         return self._cell_id
 
     @cell_id.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def cell_id(self, value: int):
         self._cell_id = value
 
@@ -38,7 +38,7 @@ class Carrier:
         return self._channel_bandwidth
 
     @channel_bandwidth.setter
-    @wfmcreator.propconst.constrain_type(float)
+    @constrain_type(float)
     def channel_bandwidth(self, value: float):
         self._channel_bandwidth = value
 
@@ -51,7 +51,7 @@ class Carrier:
         return self._frequency_range
 
     @frequency_range.setter
-    @wfmcreator.propconst.constrain_type(FrequencyRange)
+    @constrain_type(FrequencyRange)
     def frequency_range(self, value: FrequencyRange):
         self._frequency_range = value
 
@@ -64,7 +64,7 @@ class Carrier:
         return self._link_direction
     
     @link_direction.setter
-    @wfmcreator.propconst.constrain_type(LinkDirection)
+    @constrain_type(LinkDirection)
     def link_direction(self, value: LinkDirection):
         self._link_direction = value
 
@@ -77,7 +77,7 @@ class Carrier:
         return self._downlink_channel_configuration_mode
 
     @downlink_channel_configuration_mode.setter
-    @wfmcreator.propconst.constrain_type(DownlinkChannelConfigurationMode)
+    @constrain_type(DownlinkChannelConfigurationMode)
     def downlink_channel_configuration_mode(self, value: DownlinkChannelConfigurationMode):
         self._downlink_channel_configuration_mode = value
 
@@ -90,7 +90,7 @@ class Carrier:
         return self._downlink_test_model
 
     @downlink_test_model.setter
-    @wfmcreator.propconst.constrain_type(DownlinkTestModel)
+    @constrain_type(DownlinkTestModel)
     def downlink_test_model(self, value: DownlinkTestModel):
         self._downlink_test_model = value
 
@@ -103,7 +103,7 @@ class Carrier:
         return self._downlink_test_model_duplex_scheme
 
     @downlink_test_model_duplex_scheme.setter
-    @wfmcreator.propconst.constrain_type(DownlinkTestModelDuplexScheme)
+    @constrain_type(DownlinkTestModelDuplexScheme)
     def downlink_test_model_duplex_scheme(self, value: DownlinkTestModelDuplexScheme):
         self._downlink_test_model_duplex_scheme = value
 
@@ -116,7 +116,7 @@ class Carrier:
         return self._bandwidth_part_subcarrier_spacing
 
     @bandwidth_part_subcarrier_spacing.setter
-    @wfmcreator.propconst.constrain_type(float)
+    @constrain_type(float)
     def bandwidth_part_subcarrier_spacing(self, value):
         self._bandwidth_part_subcarrier_spacing = value
 
@@ -129,18 +129,18 @@ class Carrier:
         return self._pusch
 
     @num_pusch.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def num_pusch(self, value):
         self._pusch.extend_to_capacity(value)
         self._num_pusch = value
 
     @property
-    def pusch(self) -> typing.List[newradio.Pusch]:
+    def pusch(self) -> typing.List[Pusch]:
         return self._pusch
 
     @pusch.deleter
     def pusch(self):
-        self._pusch = wfmcreator.replist.ReplicatingList(newradio.Pusch, 1)
+        self._pusch = ReplicatingList(Pusch, 1)
         self._num_pusch = 1
 
     @property
@@ -148,18 +148,18 @@ class Carrier:
         return self._num_pdsch
 
     @num_pdsch.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def num_pdsch(self, value):
         self._pdsch.extend_to_capacity(value)
         self._num_pdsch = value
 
     @property
-    def pdsch(self) -> typing.List[newradio.Pdsch]:
+    def pdsch(self) -> typing.List[Pdsch]:
         return self._pdsch
 
     @pdsch.deleter
     def pdsch(self):
-        self._pdsch = wfmcreator.replist.ReplicatingList(newradio.Pdsch, 1)
+        self._pdsch = ReplicatingList(Pdsch, 1)
         self._num_pdsch = 1
 
     def __iter__(self):

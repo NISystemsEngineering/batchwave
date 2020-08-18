@@ -1,7 +1,7 @@
 import typing
-import wfmcreator.propconst
-import wfmcreator.replist
-import newradio
+from ..propconst import constrain_type
+from ..replist import ReplicatingList
+from .subblock import Subblock
 
 
 class Waveform:
@@ -9,14 +9,14 @@ class Waveform:
         self._file_name = None
         self._auto_increment_cell_id_enabled = None
         self._num_subblocks = 1
-        self._subblocks = wfmcreator.replist.ReplicatingList(newradio.Subblock, 1)
+        self._subblocks = ReplicatingList(Subblock, 1)
 
     @property
     def file_name(self) -> str:
         return self._file_name
 
     @file_name.setter
-    @wfmcreator.propconst.constrain_type(str)
+    @constrain_type(str)
     def file_name(self, value: str):
         self._file_name = value
 
@@ -29,7 +29,7 @@ class Waveform:
         return self._auto_increment_cell_id_enabled
 
     @auto_increment_cell_id_enabled.setter
-    @wfmcreator.propconst.constrain_type(bool)
+    @constrain_type(bool)
     def auto_increment_cell_id_enabled(self, value: bool):
         self._auto_increment_cell_id_enabled = value
 
@@ -42,18 +42,18 @@ class Waveform:
         return self._num_subblocks
 
     @num_subblocks.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def num_subblocks(self, value: int):
         self._subblocks.extend_to_capacity(value)
         self._num_subblocks = value
 
     @property
-    def subblocks(self) -> typing.List[newradio.Subblock]:
+    def subblocks(self) -> typing.List[Subblock]:
         return self._subblocks
 
     @subblocks.deleter
     def subblocks(self):
-        self._subblocks = wfmcreator.replist.ReplicatingList(newradio.Subblock, 1)
+        self._subblocks = ReplicatingList(Subblock, 1)
         self._num_subblocks = 1
 
     def __iter__(self):

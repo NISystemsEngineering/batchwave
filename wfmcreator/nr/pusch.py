@@ -1,4 +1,4 @@
-import wfmcreator.propconst
+from ..propconst import constrain_type
 from .pusch_enums import *
 
 
@@ -22,7 +22,7 @@ class Pusch:
         return self._rb_allocation
 
     @rb_allocation.setter
-    @wfmcreator.propconst.constrain_type(str)
+    @constrain_type(str)
     def rb_allocation(self, value: str):
         self._rb_allocation = value
 
@@ -35,7 +35,7 @@ class Pusch:
         return self._slot_allocation
 
     @slot_allocation.setter
-    @wfmcreator.propconst.constrain_type(str)
+    @constrain_type(str)
     def slot_allocation(self, value: str):
         self._slot_allocation = value
 
@@ -48,7 +48,7 @@ class Pusch:
         return self._symbol_allocation
 
     @symbol_allocation.setter
-    @wfmcreator.propconst.constrain_type(str)
+    @constrain_type(str)
     def symbol_allocation(self, value: str):
         self._symbol_allocation = value
 
@@ -61,7 +61,7 @@ class Pusch:
         return self._modulation_type
 
     @modulation_type.setter
-    @wfmcreator.propconst.constrain_type(PuschModulationType)
+    @constrain_type(PuschModulationType)
     def modulation_type(self, value: PuschModulationType):
         self._modulation_type = value
 
@@ -74,7 +74,7 @@ class Pusch:
         return self._mapping_type
 
     @mapping_type.setter
-    @wfmcreator.propconst.constrain_type(PuschMappingType)
+    @constrain_type(PuschMappingType)
     def mapping_type(self, value: PuschMappingType):
         self._mapping_type = value
 
@@ -87,7 +87,7 @@ class Pusch:
         return self._dmrs_duration
 
     @dmrs_duration.setter
-    @wfmcreator.propconst.constrain_type(PuschDmrsDuration)
+    @constrain_type(PuschDmrsDuration)
     def dmrs_duration(self, value: PuschDmrsDuration):
         self._dmrs_duration = value
 
@@ -100,7 +100,7 @@ class Pusch:
         return self._dmrs_configuration
 
     @dmrs_configuration_type.setter
-    @wfmcreator.propconst.constrain_type(PuschDmrsConfiguration)
+    @constrain_type(PuschDmrsConfiguration)
     def dmrs_configuration_type(self, value: PuschDmrsConfiguration):
         self._dmrs_configuration = value
 
@@ -113,7 +113,7 @@ class Pusch:
         return self._dmrs_additional_positions
 
     @dmrs_additional_positions.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def dmrs_additional_positions(self, value: int):
         self._dmrs_additional_positions = value
 
@@ -126,7 +126,7 @@ class Pusch:
         return self._dmrs_type_a_position
 
     @dmrs_type_a_position.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def dmrs_type_a_position(self, value: int):
         self._dmrs_type_a_position = value
 
@@ -139,7 +139,7 @@ class Pusch:
         return self._transform_precoding_enabled
 
     @transform_precoding_enabled.setter
-    @wfmcreator.propconst.constrain_type(bool)
+    @constrain_type(bool)
     def transform_precoding_enabled(self, value: bool):
         self._transform_precoding_enabled = value
 
@@ -152,7 +152,7 @@ class Pusch:
         return self._dmrs_release_version
 
     @dmrs_release_version.setter
-    @wfmcreator.propconst.constrain_type(PuschDmrsReleaseVersion)
+    @constrain_type(PuschDmrsReleaseVersion)
     def dmrs_release_version(self, value: PuschDmrsReleaseVersion):
         self._dmrs_release_version = value
 
@@ -165,7 +165,7 @@ class Pusch:
         return self._number_of_cdm_groups
 
     @number_of_cdm_groups.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def number_of_cdm_groups(self, value: int):
         self._number_of_cdm_groups = value
 

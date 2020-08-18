@@ -1,7 +1,7 @@
 import typing
-import wfmcreator.propconst
-import wfmcreator.replist
-import newradio
+from ..propconst import constrain_type
+from ..replist import ReplicatingList
+from .carrier import Carrier
 from .subblock_enums import *
 
 
@@ -11,14 +11,14 @@ class Subblock:
         self._spacing_type = None
         self._reference_cc_index = None
         self._num_carriers = 1
-        self._carriers = wfmcreator.replist.ReplicatingList(newradio.Carrier, 1)
+        self._carriers = ReplicatingList(Carrier, 1)
 
     @property
     def offset(self) -> float:
         return self._offset
 
     @offset.setter
-    @wfmcreator.propconst.constrain_type(float)
+    @constrain_type(float)
     def offset(self, value: float):
         self._offset = value
 
@@ -31,7 +31,7 @@ class Subblock:
         return self._spacing_type
 
     @spacing_type.setter
-    @wfmcreator.propconst.constrain_type(SubblockSpacingType)
+    @constrain_type(SubblockSpacingType)
     def spacing_type(self, value: SubblockSpacingType):
         self._spacing_type = value
 
@@ -44,7 +44,7 @@ class Subblock:
         return self._reference_cc_index
 
     @reference_cc_index.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def reference_cc_index(self, value: int):
         self._reference_cc_index = value
 
@@ -57,18 +57,18 @@ class Subblock:
         return self._num_carriers
 
     @num_carriers.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def num_carriers(self, value: int):
         self._carriers.extend_to_capacity(value)
         self._num_carriers = value
 
     @property
-    def carriers(self) -> typing.List[newradio.Carrier]:
+    def carriers(self) -> typing.List[Carrier]:
         return self._carriers
 
     @carriers.deleter
     def carriers(self):
-        self._carriers = wfmcreator.replist.ReplicatingList(newradio.Carrier, 1)
+        self._carriers = ReplicatingList(Carrier, 1)
         self._num_carriers = 1
 
     def __iter__(self):

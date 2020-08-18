@@ -1,4 +1,4 @@
-import wfmcreator.propconst
+from ..propconst import constrain_type
 from .pdsch_enums import *
 
 
@@ -21,7 +21,7 @@ class Pdsch:
         return self._rb_allocation
 
     @rb_allocation.setter
-    @wfmcreator.propconst.constrain_type(str)
+    @constrain_type(str)
     def rb_allocation(self, value: str):
         self._rb_allocation = value
 
@@ -34,7 +34,7 @@ class Pdsch:
         return self._slot_allocation
 
     @slot_allocation.setter
-    @wfmcreator.propconst.constrain_type(str)
+    @constrain_type(str)
     def slot_allocation(self, value: str):
         self._slot_allocation = value
 
@@ -47,7 +47,7 @@ class Pdsch:
         return self._symbol_allocation
 
     @symbol_allocation.setter
-    @wfmcreator.propconst.constrain_type(str)
+    @constrain_type(str)
     def symbol_allocation(self, value: str):
         self._symbol_allocation = value
 
@@ -60,7 +60,7 @@ class Pdsch:
         return self._modulation_type
 
     @modulation_type.setter
-    @wfmcreator.propconst.constrain_type(PdschModulationType)
+    @constrain_type(PdschModulationType)
     def modulation_type(self, value: PdschModulationType):
         self._modulation_type = value
 
@@ -73,7 +73,7 @@ class Pdsch:
         return self._mapping_type
 
     @mapping_type.setter
-    @wfmcreator.propconst.constrain_type(PdschMappingType)
+    @constrain_type(PdschMappingType)
     def mapping_type(self, value: PdschMappingType):
         self._mapping_type = value
 
@@ -86,7 +86,7 @@ class Pdsch:
         return self._dmrs_duration
 
     @dmrs_duration.setter
-    @wfmcreator.propconst.constrain_type(PdschDmrsDuration)
+    @constrain_type(PdschDmrsDuration)
     def dmrs_duration(self, value: PdschDmrsDuration):
         self._dmrs_duration = value
 
@@ -99,7 +99,7 @@ class Pdsch:
         return self._dmrs_configuration
 
     @dmrs_configuration_type.setter
-    @wfmcreator.propconst.constrain_type(PdschDmrsConfiguration)
+    @constrain_type(PdschDmrsConfiguration)
     def dmrs_configuration_type(self, value: PdschDmrsConfiguration):
         self._dmrs_configuration = value
 
@@ -112,7 +112,7 @@ class Pdsch:
         return self._dmrs_additional_positions
 
     @dmrs_additional_positions.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def dmrs_additional_positions(self, value: int):
         self._dmrs_additional_positions = value
 
@@ -125,7 +125,7 @@ class Pdsch:
         return self._dmrs_type_a_position
 
     @dmrs_type_a_position.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def dmrs_type_a_position(self, value: int):
         self._dmrs_type_a_position = value
 
@@ -138,7 +138,7 @@ class Pdsch:
         return self._dmrs_release_version
 
     @dmrs_release_version.setter
-    @wfmcreator.propconst.constrain_type(PdschDmrsReleaseVersion)
+    @constrain_type(PdschDmrsReleaseVersion)
     def dmrs_release_version(self, value: PdschDmrsReleaseVersion):
         self._dmrs_release_version = value
 
@@ -151,7 +151,7 @@ class Pdsch:
         return self._number_of_cdm_groups
 
     @number_of_cdm_groups.setter
-    @wfmcreator.propconst.constrain_type(int)
+    @constrain_type(int)
     def number_of_cdm_groups(self, value: int):
         self._number_of_cdm_groups = value
 
