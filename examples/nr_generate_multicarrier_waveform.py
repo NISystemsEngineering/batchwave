@@ -5,7 +5,7 @@ Refer to the NI-RFmx Waveform Creator documentation for more information about e
 """
 
 import wfmcreator
-import newradio
+from wfmcreator import nr
 import clr
 import os.path
 import sys
@@ -38,14 +38,14 @@ marker_event_output_terminal = NIRfsg.RfsgMarkerEventExportedOutputTerminal.PxiT
 print('Configuring waveform..', end='')
 
 # waveform
-nrw = newradio.Waveform()
+nrw = nr.Waveform()
 nrw.file_name = 'nr_waveform.rfws'
 nrw.auto_increment_cell_id_enabled = True
 
 # subblock
 subblock = nrw.subblocks[0]
 subblock.offset = 0.0
-subblock.spacing_type = newradio.SubblockSpacingType.NOMINAL
+subblock.spacing_type = nr.SubblockSpacingType.NOMINAL
 subblock.reference_cc_index = -1
 
 # carrier
@@ -53,11 +53,11 @@ subblock.num_carriers = 2
 for carrier in subblock.carriers:
     carrier.cell_id = 0
     carrier.channel_bandwidth = 100e6
-    carrier.frequency_range = newradio.FrequencyRange.RANGE_1
-    carrier.link_direction = newradio.LinkDirection.UPLINK
-    carrier.downlink_channel_configuration_mode = newradio.DownlinkChannelConfigurationMode.USER_DEFINED
-    carrier.downlink_test_model = newradio.DownlinkTestModel.TM1_1
-    carrier.downlink_test_model_duplex_scheme = newradio.DownlinkTestModelDuplexScheme.FDD
+    carrier.frequency_range = nr.FrequencyRange.RANGE_1
+    carrier.link_direction = nr.LinkDirection.UPLINK
+    carrier.downlink_channel_configuration_mode = nr.DownlinkChannelConfigurationMode.USER_DEFINED
+    carrier.downlink_test_model = nr.DownlinkTestModel.TM1_1
+    carrier.downlink_test_model_duplex_scheme = nr.DownlinkTestModelDuplexScheme.FDD
     carrier.bandwidth_part_subcarrier_spacing = 30e3
 
     # pusch
@@ -65,14 +65,14 @@ for carrier in subblock.carriers:
     pusch.rb_allocation = '0:last'
     pusch.slot_allocation = '0:last'
     pusch.symbol_allocation = '0:last'
-    pusch.modulation_type = newradio.PuschModulationType.QAM256
-    pusch.mapping_type = newradio.PuschMappingType.TYPE_A
-    pusch.dmrs_duration = newradio.PuschDmrsDuration.SINGLE_SYMBOL
-    pusch.dmrs_configuration = newradio.PuschDmrsConfiguration.TYPE_1
+    pusch.modulation_type = nr.PuschModulationType.QAM256
+    pusch.mapping_type = nr.PuschMappingType.TYPE_A
+    pusch.dmrs_duration = nr.PuschDmrsDuration.SINGLE_SYMBOL
+    pusch.dmrs_configuration = nr.PuschDmrsConfiguration.TYPE_1
     pusch.dmrs_additional_positions = 0
     pusch.dmrs_type_a_position = 2
     pusch.transform_precoding_enabled = False
-    pusch.dmrs_release_version = newradio.PuschDmrsReleaseVersion.RELEASE_15
+    pusch.dmrs_release_version = nr.PuschDmrsReleaseVersion.RELEASE_15
     pusch.number_of_cdm_groups = 1
 
     # pdsch
@@ -80,14 +80,14 @@ for carrier in subblock.carriers:
     pdsch.rb_allocation = '0:last'
     pdsch.slot_allocation = '0:last'
     pdsch.symbol_allocation = '0:last'
-    pdsch.modulation_type = newradio.PdschModulationType.QAM256
-    pdsch.mapping_type = newradio.PdschMappingType.TYPE_A
-    pdsch.dmrs_duration = newradio.PdschDmrsDuration.SINGLE_SYMBOL
-    pdsch.dmrs_configuration = newradio.PdschDmrsConfiguration.TYPE_1
+    pdsch.modulation_type = nr.PdschModulationType.QAM256
+    pdsch.mapping_type = nr.PdschMappingType.TYPE_A
+    pdsch.dmrs_duration = nr.PdschDmrsDuration.SINGLE_SYMBOL
+    pdsch.dmrs_configuration = nr.PdschDmrsConfiguration.TYPE_1
     pdsch.dmrs_additional_positions = 0
     pdsch.dmrs_type_a_position = 2
     pdsch.transform_precoding_enabled = False
-    pdsch.dmrs_release_version = newradio.PdschDmrsReleaseVersion.RELEASE_15
+    pdsch.dmrs_release_version = nr.PdschDmrsReleaseVersion.RELEASE_15
     pdsch.number_of_cdm_groups = 1
 
 print('done')
