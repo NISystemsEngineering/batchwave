@@ -151,8 +151,8 @@ class WaveformCreator:
         # if no errors, get generated file path and return
         log_file_paths = self._find_log_file_paths()
         if not log_file_paths:
-            # wfm_name = os.path.splitext(file_name)[0]
-            # self._wfm_path = wfm_name + '.tdms'
+            self._wfm_path = os.path.splitext(file_name)[0]
+            self._wfm_path = self._wfm_path + '.tdms'
             return self._wfm_path
 
         # handle errors otherwise
