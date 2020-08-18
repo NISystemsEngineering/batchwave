@@ -39,7 +39,7 @@ print('Configuring waveform..', end='')
 
 # waveform
 nrw = nr.Waveform()
-nrw.file_name = 'nr_waveform.rfws'
+file_name = 'nr_waveform.rfws'
 nrw.auto_increment_cell_id_enabled = True
 
 # subblock
@@ -94,7 +94,7 @@ print('Creating waveform..', end='')
 
 # invoke waveform creator
 wc = wfmcreator.WaveformCreator()
-wfm_path = wc.create(nrw)
+wfm_path = wc.create(nrw, file_name)
 
 print('done')
 print('Opening instrument session..', end='')

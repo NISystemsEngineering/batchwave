@@ -6,23 +6,9 @@ from .subblock import Subblock
 
 class Waveform:
     def __init__(self):
-        self._file_name = None
         self._auto_increment_cell_id_enabled = None
         self._num_subblocks = 1
         self._subblocks = ReplicatingList(Subblock, 1)
-
-    @property
-    def file_name(self) -> str:
-        return self._file_name
-
-    @file_name.setter
-    @constrain_type(str)
-    def file_name(self, value: str):
-        self._file_name = value
-
-    @file_name.deleter
-    def file_name(self):
-        self._file_name = None
 
     @property
     def auto_increment_cell_id_enabled(self) -> bool:
@@ -57,8 +43,6 @@ class Waveform:
         self._num_subblocks = 1
 
     def __iter__(self):
-        if self._file_name is not None:
-            yield 'FileName', self._file_name
         if self._auto_increment_cell_id_enabled is not None:
             yield 'AutoIncrementCellIdEnabled', str(self._auto_increment_cell_id_enabled)
         for i in range(self._num_subblocks):
