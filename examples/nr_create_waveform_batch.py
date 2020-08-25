@@ -27,7 +27,7 @@ subblock.reference_cc_index = -1
 # carrier
 for num_carriers in carrier_counts:
     del subblock.carriers
-    subblock.carriers.extend_to_capacity(num_carriers)
+    subblock.num_carriers = num_carriers
     for bandwidth in channel_bandwidths:
         for scs in subcarrier_spacings:
             for modulation in modulation_schemes:
