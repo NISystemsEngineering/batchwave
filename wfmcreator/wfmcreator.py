@@ -132,7 +132,10 @@ class WaveformCreator:
     def create(self, wfm_key_values: typing.Iterable[tuple], file_name: str = None):
         tf = tempfile.NamedTemporaryFile(mode='w', dir=self._out_dir, suffix='.csv', delete=False)
         wfm_key_values = list(wfm_key_values)
-        wfm_key_values.insert(0, ('FileName', file_name))
+        if file_name is not None:
+            if file_name.endswith('.tdms') or file_name.endswith('.rfws'):
+                file_name = os.path.splitext(file_name)[0]
+            wfm_key_values.insert(0, ('FileName', file_name))
         keys, values = zip(*wfm_key_values)
         tf.write(','.join(keys) + '\n')
         tf.write(','.join(values))
