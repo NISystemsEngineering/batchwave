@@ -129,8 +129,9 @@ class WaveformCreator:
             if log_file is not None:
                 os.remove(log_file)
 
-    def create(self, wfm_key_values: typing.List[tuple], file_name: str):
+    def create(self, wfm_key_values: typing.Iterable[tuple], file_name: str = None):
         tf = tempfile.NamedTemporaryFile(mode='w', dir=self._out_dir, suffix='.csv', delete=False)
+        wfm_key_values = list(wfm_key_values)
         wfm_key_values.insert(0, ('FileName', file_name))
         keys, values = zip(*wfm_key_values)
         tf.write(','.join(keys) + '\n')
@@ -151,6 +152,8 @@ class WaveformCreator:
         # if no errors, get generated file path and return
         log_file_paths = self._find_log_file_paths()
         if not log_file_paths:
+            if file_name is None:
+                return
             self._wfm_path = os.path.splitext(file_name)[0]
             self._wfm_path = self._wfm_path + '.tdms'
             return self._wfm_path

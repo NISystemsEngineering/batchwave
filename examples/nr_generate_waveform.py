@@ -94,7 +94,7 @@ print('Creating waveform..', end='')
 
 # invoke waveform creator
 wc = wfmcreator.WaveformCreator()
-wfm_path = wc.create(list(nrw), file_name)
+wfm_path = wc.create(nrw, file_name)
 
 print('done')
 print('Opening instrument session..', end='')
