@@ -7,13 +7,13 @@ class ReplicatingList(list):
     Represents a list that replicates a Callable configuration when getting an element that is out of bounds.
     """
     @wfmcreator.propconst.constrain_type(Callable)
-    def __init__(self, callable_type: Callable, initial_length=0, callable_args=(), callable_kwargs: dict = None):
+    def __init__(self, callable_type: Callable, callable_args=(), callable_kwargs: dict = None):
         if callable_kwargs is None:
             callable_kwargs = {}
         self._callable = callable_type
         self._args = callable_args
         self._kwargs = callable_kwargs
-        super().__init__([callable_type(*callable_args, **callable_kwargs)] * initial_length)
+        super().__init__()
 
     def __getitem__(self, index):
         self.extend_to_capacity(index + 1)

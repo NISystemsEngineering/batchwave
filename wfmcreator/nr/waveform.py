@@ -8,7 +8,7 @@ class Waveform:
     def __init__(self):
         self._auto_increment_cell_id_enabled = None
         self._num_subblocks = 1
-        self._subblocks = ReplicatingList(Subblock, 1)
+        self._subblocks = ReplicatingList(Subblock)
 
     @property
     def auto_increment_cell_id_enabled(self) -> bool:
@@ -39,7 +39,7 @@ class Waveform:
 
     @subblocks.deleter
     def subblocks(self):
-        self._subblocks = ReplicatingList(Subblock, 1)
+        self._subblocks = ReplicatingList(Subblock)
         self._num_subblocks = 1
 
     def __iter__(self):

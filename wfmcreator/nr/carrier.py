@@ -16,9 +16,9 @@ class Carrier:
         self._downlink_test_model_duplex_scheme = None
         self._bandwidth_part_subcarrier_spacing = None
         self._num_pusch = 1
-        self._pusch = ReplicatingList(Pusch, 1)
+        self._pusch = ReplicatingList(Pusch)
         self._num_pdsch = 1
-        self._pdsch = ReplicatingList(Pdsch, 1)
+        self._pdsch = ReplicatingList(Pdsch)
 
     @property
     def cell_id(self) -> int:
@@ -140,7 +140,7 @@ class Carrier:
 
     @pusch.deleter
     def pusch(self):
-        self._pusch = ReplicatingList(Pusch, 1)
+        self._pusch = ReplicatingList(Pusch)
         self._num_pusch = 1
 
     @property
@@ -159,7 +159,7 @@ class Carrier:
 
     @pdsch.deleter
     def pdsch(self):
-        self._pdsch = ReplicatingList(Pdsch, 1)
+        self._pdsch = ReplicatingList(Pdsch)
         self._num_pdsch = 1
 
     def __iter__(self):

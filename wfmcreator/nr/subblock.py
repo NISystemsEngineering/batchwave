@@ -11,7 +11,7 @@ class Subblock:
         self._spacing_type = None
         self._reference_cc_index = None
         self._num_carriers = 1
-        self._carriers = ReplicatingList(Carrier, 1)
+        self._carriers = ReplicatingList(Carrier)
 
     @property
     def offset(self) -> float:
@@ -68,7 +68,7 @@ class Subblock:
 
     @carriers.deleter
     def carriers(self):
-        self._carriers = ReplicatingList(Carrier, 1)
+        self._carriers = ReplicatingList(Carrier)
         self._num_carriers = 1
 
     def __iter__(self):
