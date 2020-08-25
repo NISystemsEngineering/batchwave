@@ -6,8 +6,8 @@ import wfmcreator
 from wfmcreator import nr
 
 carrier_counts = [1, 2, 4, 8]
-channel_bandwidths = [5e6, 10e6, 20e6, 50e6, 100e6]
-subcarrier_spacings = [30e3, 60e3]
+channel_bandwidths = [20e6, 50e6, 100e6]
+subcarrier_spacings = [30e3]
 modulation_schemes = [nr.PuschModulationType.QPSK, nr.PuschModulationType.QAM16,
                       nr.PuschModulationType.QAM64, nr.PuschModulationType.QAM256]
 
@@ -46,7 +46,7 @@ for num_carriers in carrier_counts:
                     pusch.rb_allocation = '0:last'
                     pusch.slot_allocation = '0:last'
                     pusch.symbol_allocation = '0:last'
-                    pusch.modulation_type = nr.PuschModulationType.QAM256
+                    pusch.modulation_type = modulation
                     pusch.mapping_type = nr.PuschMappingType.TYPE_A
                     pusch.dmrs_duration = nr.PuschDmrsDuration.SINGLE_SYMBOL
                     pusch.dmrs_configuration = nr.PuschDmrsConfiguration.TYPE_1
@@ -61,7 +61,7 @@ for num_carriers in carrier_counts:
                     pdsch.rb_allocation = '0:last'
                     pdsch.slot_allocation = '0:last'
                     pdsch.symbol_allocation = '0:last'
-                    pdsch.modulation_type = modulation
+                    pdsch.modulation_type = nr.PdschModulationType.QAM256
                     pdsch.mapping_type = nr.PdschMappingType.TYPE_A
                     pdsch.dmrs_duration = nr.PdschDmrsDuration.SINGLE_SYMBOL
                     pdsch.dmrs_configuration = nr.PdschDmrsConfiguration.TYPE_1
@@ -72,4 +72,6 @@ for num_carriers in carrier_counts:
                     pdsch.number_of_cdm_groups = 1
 
                     # invoke waveform creator
-                    wfm_path = wc.create(nrw)
+                    file_name = 'NR_CC{:d}_BW_{:.0f}M_SCS_{:.0f}k_Mod_{:s}.tdms'.format(
+                        num_carriers, bandwidth / 1e6, scs / 1e3, modulation.name)
+                    wfm_path = wc.create(nrw, file_name)
