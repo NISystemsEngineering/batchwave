@@ -5,3 +5,5 @@ Visit [rfmx-pythonnet](https://github.com/NISystemsEngineering/rfmx-pythonnet) f
 
 ## Video Demos
 [Introduction](https://youtu.be/2uwIhHBpVzg)
+
+[Remote with RPyC](https://www.youtube.com/watch?v=MqvvBslT0z8&feature=youtu.be)
