@@ -8,10 +8,10 @@ import rpyc
 from wfmcreator import nr  # the nr package is cross platform, we will execute it locally
 
 # open rpyc connection
-host_name = 'semoore-sutter'
+host_name = 'semoore-pxi'
 port = 18861
 print(f'Opening connection to {host_name} on port {port}..', end='')
-conn = rpyc.connect('semoore-sutter', 18861, config={'allow_all_attrs': True})
+conn = rpyc.connect(host_name, port, config={'allow_all_attrs': True})
 print('done')
 
 # upload and re-bind wfmcreator package
