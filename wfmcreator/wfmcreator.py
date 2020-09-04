@@ -101,7 +101,7 @@ class WaveformCreator:
         if self._create_only_configs:
             flag_list.append('-createOnlyConfigs')
         if self._parallel_mode:
-            flag_list.append('parallelMode')
+            flag_list.append('-parallelMode')
         if self._include_description:
             flag_list.append('-includeDescription')
         if not self._keep_rfws:
